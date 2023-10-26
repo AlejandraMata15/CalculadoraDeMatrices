@@ -9,7 +9,7 @@ def mostrar(tam,matriz):
 			print('')
 	print('')
 
-#Pa'que Vanessa ama entienda, el determinante osi osi
+#Pal determinante osi osi
 def det(matriz,tam):
 	#Caso base
 	if tam==2:
@@ -30,11 +30,21 @@ def mcd(n,modulo):
 		y=r
 	return x
 
+#Obteniendo la adjunta de una matriz
+def adjunta(matriz,tam):
+	#Caso base
+	if tam==2:
+		return [matriz[3],-matriz[2],-matriz[1],matriz[0]]
+	elif tam==3:
+		return [det([matriz[4],matriz[5],matriz[7],matriz[8]],tam-1),-det([matriz[3],matriz[5],matriz[6],matriz[8]],tam-1),det([matriz[3],matriz[4],matriz[6],matriz[7]],tam-1),-det([matriz[1],matriz[2],matriz[7],matriz[8]],tam-1),det([matriz[0],matriz[2],matriz[6],matriz[8]],tam-1),-det([matriz[0],matriz[1],matriz[6],matriz[7]],tam-1),det([matriz[1],matriz[2],matriz[4],matriz[5]],tam-1),-det([matriz[0],matriz[2],matriz[3],matriz[5]],tam-1),det([matriz[0],matriz[1],matriz[3],matriz[4]],tam-1)]
+	elif tam==4:
+		return [det([matriz[5],matriz[6],matriz[7],matriz[9],matriz[10],matriz[11],matriz[13],matriz[14],matriz[15]],tam-1),-det([matriz[4],matriz[6],matriz[7],matriz[8],matriz[10],matriz[11],matriz[12],matriz[14],matriz[15]],tam-1),det([matriz[4],matriz[5],matriz[7],matriz[8],matriz[9],matriz[11],matriz[12],matriz[13],matriz[15]],tam-1),-det([matriz[4],matriz[5],matriz[6],matriz[8],matriz[9],matriz[10],matriz[12],matriz[13],matriz[14]],tam-1),-det([matriz[1],matriz[2],matriz[3],matriz[9],matriz[10],matriz[11],matriz[13],matriz[14],matriz[15]],tam-1),det([matriz[0],matriz[2],matriz[3],matriz[8],matriz[10],matriz[11],matriz[12],matriz[14],matriz[15]],tam-1),-det([matriz[0],matriz[1],matriz[3],matriz[8],matriz[9],matriz[11],matriz[12],matriz[13],matriz[15]],tam-1),det([matriz[0],matriz[1],matriz[2],matriz[8],matriz[9],matriz[10],matriz[12],matriz[13],matriz[14]],tam-1),det([matriz[1],matriz[2],matriz[3],matriz[5],matriz[6],matriz[7],matriz[13],matriz[14],matriz[15]],tam-1),-det([matriz[0],matriz[2],matriz[3],matriz[4],matriz[6],matriz[7],matriz[12],matriz[14],matriz[15]],tam-1),det([matriz[0],matriz[1],matriz[3],matriz[4],matriz[5],matriz[7],matriz[12],matriz[13],matriz[15]],tam-1),-det([matriz[0],matriz[1],matriz[2],matriz[4],matriz[5],matriz[6],matriz[12],matriz[13],matriz[14]],tam-1),-det([matriz[1],matriz[2],matriz[3],matriz[5],matriz[6],matriz[7],matriz[9],matriz[10],matriz[11]],tam-1),det([matriz[0],matriz[2],matriz[3],matriz[4],matriz[6],matriz[7],matriz[8],matriz[10],matriz[11]],tam-1),-det([matriz[0],matriz[1],matriz[3],matriz[4],matriz[5],matriz[7],matriz[8],matriz[9],matriz[11]],tam-1),det([matriz[0],matriz[1],matriz[2],matriz[4],matriz[5],matriz[6],matriz[8],matriz[9],matriz[10]],tam-1)]
+
 #Para ingresar la matriz
 def ingreMatriz(tam,mod):
 	matriz=[]
 	for i in range(0,tam*tam):
-		print(' -> ',end='')
+		print('--> ',end='')
 		val=int(input())
 		matriz.append(val)
 	os.system('clear')
@@ -42,6 +52,8 @@ def ingreMatriz(tam,mod):
 	determinante=det(matriz,tam)
 	print('Determinante de la matriz : '+str(determinante))
 	
+	print(adjunta(matriz,tam))
+	print()
 	if mcd(determinante%mod,mod)==1:
 		print('La matriz es invertible en módulo '+str(mod)+' ya que '+str(mod)+' y '+str(determinante%mod)+' son coprimos\n')
 	else:
