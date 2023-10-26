@@ -12,7 +12,7 @@ while True:
 print('Modulo dudoso : ',end='')
 mod=int(input())
 
-f.ingreMatriz(tam)
+f.ingreMatriz(tam,mod)
 
 
 
