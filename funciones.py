@@ -57,6 +57,17 @@ def mostrar(matriz,det):
 			print(' '+str(matriz[i][j])+'/'+str(det)+' ',end='')
 		print(']')
 
+#Matriz inversa con modulo
+def mod(matriz,det):
+	f=len(matriz)
+	c=len(matriz[0])
+
+	for i in range(f):
+		print('[',end='')
+		for j in range(c):
+			print(matriz[i][j])
+		print(']')
+
 #Para ingresar la matriz
 def ingreMatriz(tam,mod):
 	matriz=[]
