@@ -57,15 +57,26 @@ def mostrar(matriz,det):
 			print(' '+str(matriz[i][j])+'/'+str(det)+' ',end='')
 		print(']')
 
+#Algoritmo extendido de euclides
+def aee(a,b):
+	if b==0:
+		return (a,1,0)
+	else:
+		(d,x1,y1)=aee(b,a%b)
+		x=y1
+		y=x1-(a//b)*y1
+		return (d,x,y)
+
 #Matriz inversa con modulo
-def mod(matriz,det):
+def modulo(matriz,det,mod):
 	f=len(matriz)
 	c=len(matriz[0])
+	m=aee(det,mod)[1]
 
 	for i in range(f):
 		print('[',end='')
 		for j in range(c):
-			print(matriz[i][j])
+			print(' '+str(((matriz[i][j]%mod)*m)%mod),end='')
 		print(']')
 
 #Para ingresar la matriz
@@ -83,14 +94,11 @@ def ingreMatriz(tam,mod):
 	
 	if mcd(determinante%mod,mod)==1:
 		print('La matriz es invertible en módulo '+str(mod)+' ya que '+str(mod)+' y '+str(determinante%mod)+' son coprimos\n')
-		print('La adjunta es:')
 		matriz=adjunta(matriz)
-		print(matriz)
-		print('La transpuesta es:')
-		matriz=transpuesta(matriz)
-		print(matriz)
 		print('\nLa matriz inversa es : ')
 		mostrar(matriz,determinante)
+		print('\nLa matriz inversa con modulo : ')
+		modulo(matriz,determinante,mod)
 	else:
 		print('La matriz no es invertible en módulo '+str(mod)+' porque no son coprimos\n')
 
