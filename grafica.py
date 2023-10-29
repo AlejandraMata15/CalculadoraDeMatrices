@@ -1,5 +1,5 @@
 import os
-import funcionesN as f
+import funciones as f
 import tkinter as tk
 from tkinter import Entry, StringVar
 
