@@ -1,6 +1,7 @@
 import numpy as np
 import os
 
+
 #Convertir un array a matriz
 def conv(matriz,tam):
 	if tam==2:
@@ -12,6 +13,7 @@ def conv(matriz,tam):
 
 #Pal determinante osi osi
 def det(matriz):
+	print("Funcion determinante")
 	m=np.array(matriz)
 	salida=np.linalg.det(m)
 	return round(salida)
@@ -80,14 +82,11 @@ def modulo(matriz,det,mod):
 		print(']')
 
 #Para ingresar la matriz
-def ingreMatriz(tam,mod):
-	matriz=[]
-	for i in range(0,tam*tam):
-		print('--> ',end='')
-		val=int(input())
-		matriz.append(val)
-	os.system('clear')
-	matriz=np.array(conv(matriz,tam))
+def ingreMatriz(tam,mod,valores):
+	print("funcion ingreMatriz")
+	valores = [valores[i:i+tam] for i in range(0, len(valores), tam)]
+	matriz = valores
+	matriz=np.array(matriz)
 	print(matriz)
 	determinante=det(matriz)
 	print('Determinante de la matriz : '+str(determinante))
@@ -101,7 +100,8 @@ def ingreMatriz(tam,mod):
 		modulo(matriz,determinante,mod)
 	else:
 		print('La matriz no es invertible en módulo '+str(mod)+' porque no son coprimos\n')
-
+		print("Ingrese una matriz valida ")
+		ingreMatriz(tam,mod)
 
 
 
