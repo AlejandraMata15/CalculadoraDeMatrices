@@ -9,11 +9,10 @@ def conv(matriz,tam):
 	elif tam==3:
 		return [[matriz[0],matriz[1],matriz[2]],[matriz[3],matriz[4],matriz[5]],[matriz[6],matriz[7],matriz[8]]]
 	elif tam==4:
-		return [[matriz[0],matriz[1],matriz[2],matriz[3]],[matriz[4],matriz[5],matriz[6],matriz[7]],[matriz[8],matriz[9],matriz[10],matriz[11]],[matriz[12],matriz[13],matriz[14],matriz[15]]] 
+		return [[matriz[0],matriz[1],matriz[2],matriz[3]],[matriz[4],matriz[5],matriz[6],matriz[7]],[matriz[8],matriz[9],matriz[10],matriz[11]],[matriz[12],matriz[13],matriz[14],matriz[15]]]
 
 #Pal determinante osi osi
 def det(matriz):
-	print("Funcion determinante")
 	m=np.array(matriz)
 	salida=np.linalg.det(m)
 	return round(salida)
@@ -83,14 +82,17 @@ def modulo(matriz,det,mod):
 
 #Para ingresar la matriz
 def ingreMatriz(tam,mod,valores):
-	print("funcion ingreMatriz")
-	valores = [valores[i:i+tam] for i in range(0, len(valores), tam)]
-	matriz = valores
-	matriz=np.array(matriz)
-	print(matriz)
+	matriz=conv(valores,tam)
 	determinante=det(matriz)
-	print('Determinante de la matriz : '+str(determinante))
-	
+	print('Determinante de la matriz : '+str(matriz)+' es : '+str(determinante))
+
+	if mcd(determinante%mod,mod)==1:
+		print('La matriz es invertible en módulo '+str(mod)+' ya que '+str(mod)+' y '+str(determinante%mod)+' son coprimos\n')
+
+	else:
+		print('La matriz no es invertible en módulo '+str(mod)+' porque no son coprimos\n')
+
+'''	
 	if mcd(determinante%mod,mod)==1:
 		print('La matriz es invertible en módulo '+str(mod)+' ya que '+str(mod)+' y '+str(determinante%mod)+' son coprimos\n')
 		matriz=adjunta(matriz)
@@ -104,5 +106,4 @@ def ingreMatriz(tam,mod,valores):
 		ingreMatriz(tam,mod)
 
 
-
-
+'''

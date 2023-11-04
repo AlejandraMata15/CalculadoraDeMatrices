@@ -1,58 +1,60 @@
 import os
-import funcionesN as f
+import funciones as f
 import tkinter as tk
 from tkinter import Entry, StringVar
 
 def matriz(valores):
-    print("siguiente")
-    tamM = int(tam.get())
-    tamM *= tamM
-    modulo = int(mod.get())
-    matriz = f.ingreMatriz(tamM, modulo,valores)
+	val=[]
+	print("siguiente")
+	tamM = int(tam.get())
+	tamM = tamM
+	modulo = int(mod.get())
+	for i in valores:
+		val.append(int(i))
+	matriz = f.ingreMatriz(tamM, modulo,val)
 
 def crear_entries():
-    
-    #Obtener el valor de tam y convertirlo en entero
-    tam_Matriz = int(tam.get())
-    #Crear una lista para almacenar los Entry widgets
-   # entries = []
-    #Crear filas y columnas de Entry widgets
-    for fila in range(tam_Matriz):
-        fila_entries = []
-        for columna in range(tam_Matriz):
-            entry = Entry(pantalla, width=5)
-            entry.grid(row= fila+6, column= columna)
-            fila_entries.append(entry)
-        entries.append(fila_entries)
-    button2 = tk.Button(pantalla, text="Calcular", command=obtenerValores)
-    button2.grid(row=20, column=1)
+
+	#Obtener el valor de tam y convertirlo en entero
+	tam_Matriz = int(tam.get())
+	#Crear una lista para almacenar los Entry widgets
+	# entries = []
+	#Crear filas y columnas de Entry widgets
+	for fila in range(tam_Matriz):
+		fila_entries = []
+		for columna in range(tam_Matriz):
+			entry = Entry(pantalla, width=5)
+			entry.grid(row= fila+6, column= columna)
+			fila_entries.append(entry)
+		entries.append(fila_entries)
+	button2 = tk.Button(pantalla, text="Calcular", command=obtenerValores)
+	button2.grid(row=20, column=1)
 
 
 def obtenerValores():
-    valores = []
-    for fila_entries in entries:
-        fila_valores = [entry.get() for entry in fila_entries]
-        valores.append(fila_valores)
+	valores = []
+	for fila_entries in entries:
+		fila_valores = [entry.get() for entry in fila_entries]
+		valores.append(fila_valores)
 
-    # Verificar que se hayan ingresado suficientes valores
-    tam_Matriz = int(tam.get())
-    if all(len(fila) == tam_Matriz for fila in valores) and len(valores) == tam_Matriz:
-        valores = aplanarLista(valores)
-        matriz(valores)
-    else:
-        print("Asegúrate de ingresar valores en cada celda de la matriz.")
-
-    #matriz(valores)
+	# Verificar que se hayan ingresado suficientes valores
+	tam_Matriz = int(tam.get())
+	if all(len(fila) == tam_Matriz for fila in valores) and len(valores) == tam_Matriz:
+		valores = aplanarLista(valores)
+		matriz(valores)
+	else:
+		print("Asegúrate de ingresar valores en cada celda de la matriz.")
+	#matriz(valores)
 
 def aplanarLista(valores):
-    lista = []
-    for sublista in valores:
-        lista.extend(sublista)
-    valores = lista[:]
-    return valores
+	lista = []
+	for sublista in valores:
+		lista.extend(sublista)
+	valores = lista[:]
+	return valores
 
 entries = []
-
+os.system('clear')
 pantalla = tk.Tk()
 pantalla.title("Calculadora de matrices")
 pantalla.geometry("400x300")
