@@ -19,6 +19,7 @@ def det(matriz):
 
 #Adjunta de una matriz
 def cofactores(matrix):
+	matrix=np.array(matrix)
 	num_rows, num_cols = matrix.shape
 	cofactors = np.zeros((num_rows, num_cols), dtype=int)
 
@@ -88,6 +89,9 @@ def ingreMatriz(tam,mod,valores):
 
 	if mcd(determinante%mod,mod)==1:
 		print('La matriz es invertible en módulo '+str(mod)+' ya que '+str(mod)+' y '+str(determinante%mod)+' son coprimos\n')
+		matriz=adjunta(matriz)
+		print('La matriz inversa es :')
+		modulo(matriz,determinante,mod)
 
 	else:
 		print('La matriz no es invertible en módulo '+str(mod)+' porque no son coprimos\n')

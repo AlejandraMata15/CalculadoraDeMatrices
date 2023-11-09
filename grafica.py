@@ -57,7 +57,7 @@ entries = []
 os.system('clear')
 pantalla = tk.Tk()
 pantalla.title("Calculadora de matrices")
-pantalla.geometry("400x300")
+pantalla.geometry("400x600")
 
 label_tam = tk.Label(pantalla, text="Tamaño de la matriz: ")
 label_tam.grid(row=0, column=2)
