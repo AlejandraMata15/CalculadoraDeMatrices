@@ -75,11 +75,16 @@ def modulo(matriz,det,mod):
 	c=len(matriz[0])
 	m=aee(det,mod)[1]
 
+	sal=[]
 	for i in range(f):
 		print('[',end='')
 		for j in range(c):
 			print(' '+str(((matriz[i][j]%mod)*m)%mod),end='')
+			sal.append(((matriz[i][j]%mod)*m)%mod)
 		print(']')
+
+	print(sal)
+	return sal
 
 #Para ingresar la matriz
 def ingreMatriz(tam,mod,valores):
@@ -91,10 +96,11 @@ def ingreMatriz(tam,mod,valores):
 		print('La matriz es invertible en módulo '+str(mod)+' ya que '+str(mod)+' y '+str(determinante%mod)+' son coprimos\n')
 		matriz=adjunta(matriz)
 		print('La matriz inversa es :')
-		modulo(matriz,determinante,mod)
-
+		sal=modulo(matriz,determinante,mod)
+		return sal
 	else:
 		print('La matriz no es invertible en módulo '+str(mod)+' porque no son coprimos\n')
+		return 'Error'
 
 '''	
 	if mcd(determinante%mod,mod)==1:
